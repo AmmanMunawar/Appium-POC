@@ -1,15 +1,13 @@
 package com.ebricks.script.model.event;
 
-import com.ebricks.script.model.Step;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
+import com.ebricks.script.service.AppiumService;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
 public class BackButton extends Event {
 
-    public void execute(Step step,AndroidDriver<MobileElement> driver){
+    public void execute(){
 
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+        AppiumService.getInstance().getDriver().pressKey(new KeyEvent(AndroidKey.BACK));
     }
 }

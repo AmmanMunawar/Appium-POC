@@ -1,10 +1,8 @@
 package com.ebricks.script.model.event;
 
-import com.ebricks.script.model.Step;
+import com.ebricks.script.model.UIElement;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
@@ -29,7 +27,8 @@ public class Event {
         this.type = type;
     }
 
-    public void execute(Step step, AndroidDriver<MobileElement> driver){
+    public void execute(UIElement uiElement){
 
     }
+    public void execute(){}
 }

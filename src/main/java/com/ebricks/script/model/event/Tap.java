@@ -1,17 +1,15 @@
 package com.ebricks.script.model.event;
 
-import com.ebricks.script.model.Step;
+
+import com.ebricks.script.model.UIElement;
+import com.ebricks.script.service.AppiumService;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 
 public class Tap extends Event {
-    public void execute(Step step,AndroidDriver<MobileElement> driver){
+    public void execute(UIElement uiElement) {
 
-        if(step.getElement()!=null){
-
-            MobileElement mobileElement = driver.findElement(By.xpath("//"+step.getElement().getType()+"[@text='" + step.getElement().getText() + "']"));
-            mobileElement.click();
-        }
+        MobileElement mobileElement = AppiumService.getInstance().getDriver().findElement(By.xpath("//" + uiElement.getType() + "[@text='" + uiElement.getText() + "']"));
+        mobileElement.click();
     }
 }

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScriptInputData {
-    private List<Step> stepList = new ArrayList<Step>();
+    private List<Step> steps = new ArrayList<Step>();
 
     public List<Step> getStepList() {
-        return stepList;
+        return steps;
     }
 
     public void setStepList(List<Step> stepList) {
-        this.stepList = stepList;
+        this.steps = stepList;
     }
 }

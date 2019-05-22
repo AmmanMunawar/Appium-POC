@@ -1,22 +1,20 @@
 package com.ebricks.script.executor;
 
-import com.ebricks.script.config.Configuration;
 import com.ebricks.script.model.ScriptInputData;
 import com.ebricks.script.model.Step;
 import com.ebricks.script.model.UIElement;
+import com.ebricks.script.service.AppiumService;
+import com.ebricks.script.stepexecutor.StepFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.remote.DesiredCapabilities;
+
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.io.StringReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -26,30 +24,11 @@ import org.xml.sax.InputSource;
 
 public class ScriptExecutor {
     private static final Logger LOGGER = LogManager.getLogger(ScriptExecutor.class.getName());
-    private static AndroidDriver<MobileElement> driver;
     private ScriptInputData scriptInputData;
-    private UIElement uiElement;
-    private Configuration configuration = Configuration.getInstance();
-
-
-    public void initialiazeConnectionWithAppium() {
-
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("deviceName",configuration.getDeviceName());
-        caps.setCapability("platformName", configuration.getPlatformName());
-        caps.setCapability("platformVersion", configuration.getPlatformVersion());
-        caps.setCapability("automationName", configuration.getAutomationName());
-        caps.setCapability("app", System.getProperty("user.dir") + "/resources/spellingOverlapError.apk");
-        try {
-            driver = new AndroidDriver<MobileElement>(new URL(configuration.getAppiumURL()), caps);
-        } catch (MalformedURLException e) {
-            LOGGER.error(e);
-        }
-    }
 
     public void init() {
 
-        initialiazeConnectionWithAppium();
+        AppiumService.getInstance().initialiazeConnectionWithAppium();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             scriptInputData = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/elements.json")
@@ -61,37 +40,31 @@ public class ScriptExecutor {
 
     public void process() throws InterruptedException {
 
-        for (Step stepExecutor : this.scriptInputData.getStepList()) {
+        for (Step steps : this.scriptInputData.getStepList()) {
 
-            Document xmlDocument = convertXMLStringToDocument(driver.getPageSource());
-            NodeList nodeList = xmlDocument.getElementsByTagName("*");
-
-            if(stepExecutor.getElement()==null){
-                stepExecutor.getEvent().execute(stepExecutor,driver);
+            if (steps.getElement() == null) {
+                StepFactory.getInstance().getStepExecutor(steps).execute();
+            } else {
+                UIElement uiElement1 = findUIElement(
+                        AppiumService.getInstance().getDriver().getPageSource(), steps.getElement()
+                );
+                StepFactory.getInstance().getStepExecutor(steps).execute(uiElement1);
             }
-            else {
-                this.uiElement = stepExecutor.getElement();
-                UIElement uiElement1 = createUIElementfromNodelist(nodeList);
-                stepExecutor.setElement(uiElement1);
-                stepExecutor.getEvent().execute(stepExecutor,driver);
-
-            }
-//            stepExecutor.getEvent().execute(stepExecutor);
-//            MobileElement mobileElement = driver.findElement(By.xpath("//"+uiElement1.getType()+"[@text='" + uiElement1.getText() + "']"));
-//            mobileElement.click();
             Thread.sleep(2000);
         }
     }
 
-    public boolean compareUIElemetsobjects(UIElement uiElement){
-        if(this.uiElement.isEqual(uiElement)){
+    public boolean compareUIElemetsobjects(UIElement uiElement, UIElement uiElement1) {
+        if (uiElement.isEqual(uiElement1)) {
             return true;
         }
         return false;
     }
 
-    public UIElement createUIElementfromNodelist(NodeList xmlNodeList) {
+    public UIElement findUIElement(String xmlString, UIElement uiElement) {
 
+        Document xmlDocument = convertXMLStringToDocument(xmlString);
+        NodeList xmlNodeList = xmlDocument.getElementsByTagName("*");
         UIElement uiElementTemp = new UIElement();
         for (int i = 0; i < xmlNodeList.getLength(); i++) {
 
@@ -116,7 +89,7 @@ public class ScriptExecutor {
                 uiElementTemp.setSelected(Boolean.valueOf(eElement.getAttribute("selected")));
                 uiElementTemp.setType(eElement.getAttribute("class"));
             }
-            if (this.compareUIElemetsobjects(uiElementTemp)) {
+            if (this.compareUIElemetsobjects(uiElementTemp, uiElement)) {
                 return uiElementTemp;
             }
         }
@@ -138,6 +111,6 @@ public class ScriptExecutor {
     }
 
     public void end() {
-        driver.quit();
+        AppiumService.getInstance().getDriver().quit();
     }
 }
