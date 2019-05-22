@@ -1,0 +1,61 @@
+{
+	"stepList": [{
+			"element": {
+				"text": "OPEN SCREEN E",
+				"type": "android.widget.Button",
+				"pkg": "com.ebricks.testspot.hellowworld",
+				"contentDesc": "",
+				"checkable": false,
+				"checked": false,
+				"clickable": true,
+				"enabled": true,
+				"focusable": true,
+				"focused": false,
+				"scrollable": false,
+				"longClickable": false,
+				"password": false,
+				"selected": false,
+				"bounds": "[350,1706][798,1874]",
+				"resourceId": ""
+			},
+			"event": {
+				"type": "tap"
+				
+
+			}
+		},
+		{
+			"element": null,
+			"event": {
+				"type": "back"
+
+
+			}
+		},
+		{
+			"element": {
+				"text": "OPEN SCREEN E",
+				"type": "android.widget.Button",
+				"pkg": "com.ebricks.testspot.hellowworld",
+				"contentDesc": "",
+				"checkable": false,
+				"checked": false,
+				"clickable": true,
+				"enabled": true,
+				"focusable": true,
+				"focused": false,
+				"scrollable": false,
+				"longClickable": false,
+				"password": false,
+				"selected": false,
+				"bounds": "[350,1706][798,1874]",
+				"resourceId": ""
+			},
+			"event": {
+				"type": "tap"
+				
+
+			}
+		}
+	]
+}

@@ -2,19 +2,18 @@ package com.ebricks.script.executor;
 
 import com.ebricks.script.config.Configuration;
 import com.ebricks.script.model.ScriptInputData;
+import com.ebricks.script.model.Step;
 import com.ebricks.script.model.UIElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-//For XML Librairies
 import java.io.StringReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -53,7 +52,7 @@ public class ScriptExecutor {
         initialiazeConnectionWithAppium();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            scriptInputData = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/appelements.json")
+            scriptInputData = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/elements.json")
                     , ScriptInputData.class);
         } catch (IOException e) {
             LOGGER.error(e);
@@ -62,14 +61,24 @@ public class ScriptExecutor {
 
     public void process() throws InterruptedException {
 
-        for (final UIElement uiElement : this.scriptInputData.getUiElementList()) {
+        for (Step stepExecutor : this.scriptInputData.getStepList()) {
 
             Document xmlDocument = convertXMLStringToDocument(driver.getPageSource());
             NodeList nodeList = xmlDocument.getElementsByTagName("*");
-            this.uiElement=uiElement;
-            UIElement uiElement1 = createUIElementfromNodelist(nodeList);
-            MobileElement mobileElement = driver.findElement(By.xpath("//"+uiElement1.getType()+"[@text='" + uiElement1.getText() + "']"));
-            mobileElement.click();
+
+            if(stepExecutor.getElement()==null){
+                stepExecutor.getEvent().execute(stepExecutor,driver);
+            }
+            else {
+                this.uiElement = stepExecutor.getElement();
+                UIElement uiElement1 = createUIElementfromNodelist(nodeList);
+                stepExecutor.setElement(uiElement1);
+                stepExecutor.getEvent().execute(stepExecutor,driver);
+
+            }
+//            stepExecutor.getEvent().execute(stepExecutor);
+//            MobileElement mobileElement = driver.findElement(By.xpath("//"+uiElement1.getType()+"[@text='" + uiElement1.getText() + "']"));
+//            mobileElement.click();
             Thread.sleep(2000);
         }
     }
