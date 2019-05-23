@@ -11,5 +11,6 @@ public class Tap extends Event {
 
         MobileElement mobileElement = AppiumService.getInstance().getDriver().findElement(By.xpath("//" + uiElement.getType() + "[@text='" + uiElement.getText() + "']"));
         mobileElement.click();
+
     }
 }

@@ -1,5 +1,7 @@
 {
-	"steps": [{
+	"steps": [
+
+		{
 			"element": {
 				"text": "NEXT",
 				"type": "android.widget.TextView",
@@ -113,6 +115,44 @@
 				"type": "tap"
 			}
 		},
+		
+		{
+			"element": null,
+			"event": {
+				"type": "lock"
+			}
+		},
+		{
+			"element": null,
+			"event": {
+				"type": "unlock"
+			}
+		},
+		
+		
+		{
+			"element": {
+				"text": "Already a member? Sign In",
+				"type": "android.widget.TextView",
+				"pkg": "com.coupons.ciapp",
+				"contentDesc": "",
+				"checkable": false,
+				"checked": false,
+				"clickable": true,
+				"enabled": true,
+				"focusable": true,
+				"focused": false,
+				"scrollable": false,
+				"longClickable": false,
+				"password": false,
+				"selected": false,
+				"bounds": "[365,437][1074,503]",
+				"resourceId": "com.coupons.ciapp:id/signin_signup_link_text"
+			},
+			"event": {
+				"type": "tap"
+			}
+		},
 		{
 			"element": {
 				"text": "Email Address",
@@ -133,11 +173,13 @@
 				"resourceId": "com.coupons.ciapp:id/email_edit"
 			},
 			"event": {
-				"type": "tap"
+				"type": "inputText",
+				"text": "faiza.shehzadi@ebricks-inc.com"
 			}
-		}, {
+		},
+		{
 			"element": {
-				"text": "Email Address",
+				"text": "Password (8 characters or more)",
 				"type": "android.widget.EditText",
 				"pkg": "com.coupons.ciapp",
 				"contentDesc": "",
@@ -149,14 +191,72 @@
 				"focused": false,
 				"scrollable": false,
 				"longClickable": true,
-				"password": false,
+				"password": true,
 				"selected": false,
-				"bounds": "[98,1141][1342,1299]",
-				"resourceId": "com.coupons.ciapp:id/email_edit"
+				"bounds": "[98,1331][1342,1489]",
+				"resourceId": "com.coupons.ciapp:id/password_edit"
 			},
 			"event": {
-				"type": "inputText"
+				"type": "inputText",
+				"text": "@Faiza13"
+			}
+		},
+		{
+			"element": null,
+			"event": {
+				"type": "Swipe",
+				"startPointX": 676,
+				"startPointY": 1110,
+				"endPointX": 680,
+				"endPointY": 576,
+				"duration": 1
+			}
+		},
+		{
+			"element": {
+				"text": "Sign In",
+				"type": "android.widget.Button",
+				"pkg": "com.coupons.ciapp",
+				"contentDesc": "",
+				"checkable": false,
+				"checked": false,
+				"clickable": true,
+				"enabled": false,
+				"focusable": true,
+				"focused": false,
+				"scrollable": false,
+				"longClickable": false,
+				"password": false,
+				"selected": false,
+				"bounds": "[282,1654][1157,1822]",
+				"resourceId": "com.coupons.ciapp:id/signin_signup_button"
+			},
+			"event": {
+				"type": "tap"
+			}
+		},
+		{
+			"element": null,
+			"event": {
+				"type": "Swipe",
+				"startPointX": 676,
+				"startPointY": 1110,
+				"endPointX": 680,
+				"endPointY": 576,
+				"duration": 3
+			}
+		},
+		{
+			"element": null,
+			"event": {
+				"type": "Swipe",
+				"startPointX": 680,
+				"startPointY": 576,
+				"endPointX": 676,
+				"endPointY": 1110,
+				"duration": 4
 			}
 		}
+
 	]
 }

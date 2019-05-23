@@ -4,6 +4,7 @@ import com.ebricks.script.executor.ScriptExecutor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -29,6 +30,7 @@ public class Configuration {
         }
         return instance;
     }
+
     public String getDeviceName() {
         return deviceName;
     }

@@ -24,11 +24,13 @@ public class StepFactory {
         }else if (step.getEvent().getType().equals("unlock")) {
             return new UnlockExecutor(step);
         }else if (step.getEvent().getType().equals("home")){
-            return new HomeButtonExecutor(step);
+            return new HomeExecutor(step);
         }else if (step.getEvent().getType().equals("launch")){
-            return new LaunchAppExecutor(step);
+            return new LaunchExecutor(step);
         }else if (step.getEvent().getType().equals("inputText")){
-            return new InputTextExecutor(step);
+            return new InputExecutor(step);
+        }else if (step.getEvent().getType().equals("Swipe")){
+            return new SwipeExecutor(step);
         }
 
 

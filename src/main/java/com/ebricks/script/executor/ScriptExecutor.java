@@ -8,17 +8,18 @@ import com.ebricks.script.stepexecutor.StepFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-
 
 public class ScriptExecutor {
     private static final Logger LOGGER = LogManager.getLogger(ScriptExecutor.class.getName());
@@ -44,11 +45,11 @@ public class ScriptExecutor {
                 StepFactory.getInstance().getStepExecutor(step).execute();
             } else {
                 UIElement uiElement1 = findUIElement(
-                        AppiumService.getInstance().getActivityPageSourse(), step.getElement()
+                        AppiumService.getInstance().getPageSourse(), step.getElement()
                 );
                 StepFactory.getInstance().getStepExecutor(step).execute(uiElement1);
             }
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         }
     }
 
@@ -66,7 +67,6 @@ public class ScriptExecutor {
             Node node = xmlNodeList.item(i);
             Element eElement = (Element) node;
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-
                 uiElementTemp.setText(eElement.getAttribute("text"));
                 uiElementTemp.setBounds(eElement.getAttribute("bounds"));
                 uiElementTemp.setCheckable(Boolean.valueOf(eElement.getAttribute("checkable")));
