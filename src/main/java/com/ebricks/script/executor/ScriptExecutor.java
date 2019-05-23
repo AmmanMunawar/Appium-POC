@@ -8,13 +8,11 @@ import com.ebricks.script.stepexecutor.StepFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -28,7 +26,7 @@ public class ScriptExecutor {
 
     public void init() {
 
-        AppiumService.getInstance().initialiazeConnectionWithAppium();
+        AppiumService.getInstance().createSession();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             scriptInputData = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/elements.json")
@@ -40,25 +38,22 @@ public class ScriptExecutor {
 
     public void process() throws InterruptedException {
 
-        for (Step steps : this.scriptInputData.getStepList()) {
+        for (Step step : this.scriptInputData.getSteps()) {
 
-            if (steps.getElement() == null) {
-                StepFactory.getInstance().getStepExecutor(steps).execute();
+            if (step.getElement() == null) {
+                StepFactory.getInstance().getStepExecutor(step).execute();
             } else {
                 UIElement uiElement1 = findUIElement(
-                        AppiumService.getInstance().getDriver().getPageSource(), steps.getElement()
+                        AppiumService.getInstance().getActivityPageSourse(), step.getElement()
                 );
-                StepFactory.getInstance().getStepExecutor(steps).execute(uiElement1);
+                StepFactory.getInstance().getStepExecutor(step).execute(uiElement1);
             }
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         }
     }
 
     public boolean compareUIElemetsobjects(UIElement uiElement, UIElement uiElement1) {
-        if (uiElement.isEqual(uiElement1)) {
-            return true;
-        }
-        return false;
+        return uiElement.isEqual(uiElement1);
     }
 
     public UIElement findUIElement(String xmlString, UIElement uiElement) {

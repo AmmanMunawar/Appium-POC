@@ -1,9 +1,9 @@
 {
-	"stepList": [{
+	"steps": [{
 			"element": {
-				"text": "OPEN SCREEN E",
-				"type": "android.widget.Button",
-				"pkg": "com.ebricks.testspot.hellowworld",
+				"text": "NEXT",
+				"type": "android.widget.TextView",
+				"pkg": "com.coupons.ciapp",
 				"contentDesc": "",
 				"checkable": false,
 				"checked": false,
@@ -15,28 +15,18 @@
 				"longClickable": false,
 				"password": false,
 				"selected": false,
-				"bounds": "[350,1706][798,1874]",
-				"resourceId": ""
+				"bounds": "[0,2147][1440,2392]",
+				"resourceId": "com.coupons.ciapp:id/next_button"
 			},
 			"event": {
 				"type": "tap"
-				
-
-			}
-		},
-		{
-			"element": null,
-			"event": {
-				"type": "back"
-
-
 			}
 		},
 		{
 			"element": {
-				"text": "OPEN SCREEN E",
-				"type": "android.widget.Button",
-				"pkg": "com.ebricks.testspot.hellowworld",
+				"text": "NEXT",
+				"type": "android.widget.TextView",
+				"pkg": "com.coupons.ciapp",
 				"contentDesc": "",
 				"checkable": false,
 				"checked": false,
@@ -48,13 +38,124 @@
 				"longClickable": false,
 				"password": false,
 				"selected": false,
-				"bounds": "[350,1706][798,1874]",
-				"resourceId": ""
+				"bounds": "[0,2147][1440,2392]",
+				"resourceId": "com.coupons.ciapp:id/next_button"
 			},
 			"event": {
 				"type": "tap"
-				
-
+			}
+		},
+		{
+			"element": {
+				"text": "NEXT",
+				"type": "android.widget.TextView",
+				"pkg": "com.coupons.ciapp",
+				"contentDesc": "",
+				"checkable": false,
+				"checked": false,
+				"clickable": true,
+				"enabled": true,
+				"focusable": true,
+				"focused": false,
+				"scrollable": false,
+				"longClickable": false,
+				"password": false,
+				"selected": false,
+				"bounds": "[0,2147][1440,2392]",
+				"resourceId": "com.coupons.ciapp:id/next_button"
+			},
+			"event": {
+				"type": "tap"
+			}
+		},
+		{
+			"element": {
+				"text": "Later",
+				"type": "android.widget.TextView",
+				"pkg": "com.coupons.ciapp",
+				"contentDesc": "",
+				"checkable": false,
+				"checked": false,
+				"clickable": true,
+				"enabled": true,
+				"focusable": true,
+				"focused": false,
+				"scrollable": false,
+				"longClickable": false,
+				"password": false,
+				"selected": false,
+				"bounds": "[0,2147][576,2392]",
+				"resourceId": "com.coupons.ciapp:id/next_button"
+			},
+			"event": {
+				"type": "tap"
+			}
+		}, {
+			"element": {
+				"text": "Start",
+				"type": "android.widget.TextView",
+				"pkg": "com.coupons.ciapp",
+				"contentDesc": "",
+				"checkable": false,
+				"checked": false,
+				"clickable": true,
+				"enabled": true,
+				"focusable": true,
+				"focused": false,
+				"scrollable": false,
+				"longClickable": false,
+				"password": false,
+				"selected": false,
+				"bounds": "[0,2147][1440,2392]",
+				"resourceId": "com.coupons.ciapp:id/next_button"
+			},
+			"event": {
+				"type": "tap"
+			}
+		},
+		{
+			"element": {
+				"text": "Email Address",
+				"type": "android.widget.EditText",
+				"pkg": "com.coupons.ciapp",
+				"contentDesc": "",
+				"checkable": false,
+				"checked": false,
+				"clickable": true,
+				"enabled": true,
+				"focusable": true,
+				"focused": false,
+				"scrollable": false,
+				"longClickable": true,
+				"password": false,
+				"selected": false,
+				"bounds": "[98,1141][1342,1299]",
+				"resourceId": "com.coupons.ciapp:id/email_edit"
+			},
+			"event": {
+				"type": "tap"
+			}
+		}, {
+			"element": {
+				"text": "Email Address",
+				"type": "android.widget.EditText",
+				"pkg": "com.coupons.ciapp",
+				"contentDesc": "",
+				"checkable": false,
+				"checked": false,
+				"clickable": true,
+				"enabled": true,
+				"focusable": true,
+				"focused": false,
+				"scrollable": false,
+				"longClickable": true,
+				"password": false,
+				"selected": false,
+				"bounds": "[98,1141][1342,1299]",
+				"resourceId": "com.coupons.ciapp:id/email_edit"
+			},
+			"event": {
+				"type": "inputText"
 			}
 		}
 	]

@@ -13,7 +13,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonSubTypes({
 
         @JsonSubTypes.Type(value = Tap.class, name = "tap"),
-        @JsonSubTypes.Type(value = BackButton.class, name = "back")
+        @JsonSubTypes.Type(value = BackButton.class, name = "back"),
+        @JsonSubTypes.Type(value = Lock.class, name = "lock"),
+        @JsonSubTypes.Type(value = Unlock.class, name = "unlock"),
+        @JsonSubTypes.Type(value = Home.class, name = "home"),
+        @JsonSubTypes.Type(value = LaunchApp.class, name = "launch"),
+        @JsonSubTypes.Type(value = InputText.class, name = "inputText"),
+
 
 })
 public class Event {
