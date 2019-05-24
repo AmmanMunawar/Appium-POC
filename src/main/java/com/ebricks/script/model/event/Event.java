@@ -12,14 +12,14 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 )
 @JsonSubTypes({
 
-        @JsonSubTypes.Type(value = Tap.class, name = "tap"),
-        @JsonSubTypes.Type(value = Back.class, name = "back"),
-        @JsonSubTypes.Type(value = Lock.class, name = "lock"),
-        @JsonSubTypes.Type(value = Unlock.class, name = "unlock"),
-        @JsonSubTypes.Type(value = Home.class, name = "home"),
-        @JsonSubTypes.Type(value = Launch.class, name = "launch"),
-        @JsonSubTypes.Type(value = Input.class, name = "inputText"),
-        @JsonSubTypes.Type(value = Swipe.class, name = "Swipe"),
+        @JsonSubTypes.Type(value = TapEvent.class, name = "tap"),
+        @JsonSubTypes.Type(value = BackEvent.class, name = "back"),
+        @JsonSubTypes.Type(value = LockEvent.class, name = "lock"),
+        @JsonSubTypes.Type(value = UnlockEvent.class, name = "unlock"),
+        @JsonSubTypes.Type(value = HomeEvent.class, name = "home"),
+        @JsonSubTypes.Type(value = LaunchEvent.class, name = "launch"),
+        @JsonSubTypes.Type(value = InputEvent.class, name = "inputText"),
+        @JsonSubTypes.Type(value = SwipeEvent.class, name = "Swipe"),
 
 
 })
@@ -32,12 +32,5 @@ public class Event {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public void execute(UIElement uiElement) {
-
-    }
-
-    public void execute() {
     }
 }

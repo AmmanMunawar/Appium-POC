@@ -33,7 +33,7 @@ public class ScriptExecutor {
             scriptInputData = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/elements.json")
                     , ScriptInputData.class);
         } catch (IOException e) {
-            LOGGER.error(e);
+            LOGGER.error("IOException", e);
         }
     }
 
@@ -41,14 +41,10 @@ public class ScriptExecutor {
 
         for (Step step : this.scriptInputData.getSteps()) {
 
-            if (step.getElement() == null) {
-                StepFactory.getInstance().getStepExecutor(step).execute();
-            } else {
-                UIElement uiElement1 = findUIElement(
-                        AppiumService.getInstance().getPageSourse(), step.getElement()
-                );
-                StepFactory.getInstance().getStepExecutor(step).execute(uiElement1);
-            }
+            UIElement uiElement1 = findUIElement(
+                    AppiumService.getInstance().getPageSourse(), step.getElement()
+            );
+            StepFactory.getInstance().getStepExecutor(step).execute(uiElement1);
             Thread.sleep(3000);
         }
     }
@@ -59,6 +55,9 @@ public class ScriptExecutor {
 
     public UIElement findUIElement(String xmlString, UIElement uiElement) {
 
+        if (uiElement == null) {
+            return null;
+        }
         Document xmlDocument = convertXMLStringToDocument(xmlString);
         NodeList xmlNodeList = xmlDocument.getElementsByTagName("*");
         UIElement uiElementTemp = new UIElement();
@@ -100,12 +99,12 @@ public class ScriptExecutor {
             Document xmlDocument = builder.parse(new InputSource(new StringReader(xmlStr)));
             return xmlDocument;
         } catch (Exception e) {
-            LOGGER.error(e);
+            LOGGER.error("Exception", e);
         }
         return null;
     }
 
     public void end() {
-        AppiumService.getInstance().getDriver().quit();
+        AppiumService.getInstance().quit();
     }
 }

@@ -1,8 +1,7 @@
 package com.ebricks.script.model.event;
 
-import com.ebricks.script.service.AppiumService;
 
-public class Swipe extends Event {
+public class SwipeEvent extends Event {
     private int startPointX;
     private int startPointY;
     private int endPointX;
@@ -49,7 +48,5 @@ public class Swipe extends Event {
         this.endPointY = endPointY;
     }
 
-    public void execute() {
-        AppiumService.getInstance().swipe(getStartPointX(), getStartPointY(), getEndPointX(), getEndPointY());
-    }
+
 }

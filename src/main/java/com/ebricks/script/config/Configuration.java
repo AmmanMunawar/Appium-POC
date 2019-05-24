@@ -14,7 +14,25 @@ public class Configuration {
     private String platformName;
     private String platformVersion;
     private String automationName;
-    private String appiumURL;
+    private String appiumIP;
+    private int appiumPort;
+
+    public String getAppiumIP() {
+        return appiumIP;
+    }
+
+    public void setAppiumIP(String appiumIP) {
+        this.appiumIP = appiumIP;
+    }
+
+    public int getAppiumPort() {
+        return appiumPort;
+    }
+
+    public void setAppiumPort(int appiumPort) {
+        this.appiumPort = appiumPort;
+    }
+
     private static Configuration instance;
 
     public static Configuration getInstance() {
@@ -63,11 +81,5 @@ public class Configuration {
         this.automationName = automationName;
     }
 
-    public String getAppiumURL() {
-        return appiumURL;
-    }
 
-    public void setAppiumURL(String appriumURL) {
-        this.appiumURL = appriumURL;
-    }
 }
