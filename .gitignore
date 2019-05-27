@@ -1,6 +1,6 @@
 **/*.iml
 target/
-resources/results
+resources/
 .idea/
 logs/
 iml/
