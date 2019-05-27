@@ -1,0 +1,7 @@
+**/*.iml
+target/
+resources/results
+.idea/
+logs/
+iml/
+.gitignore
