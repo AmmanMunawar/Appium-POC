@@ -5,6 +5,7 @@ import com.ebricks.script.model.Step;
 import com.ebricks.script.model.UIElement;
 import com.ebricks.script.model.event.InputEvent;
 import com.ebricks.script.service.AppiumService;
+import com.ebricks.script.stepexecutor.response.StepResponse;
 import io.appium.java_client.MobileElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,9 +17,15 @@ public class InputExecutor extends StepExecutor {
     public InputExecutor(Step step) {
         super(step);
     }
+    public void init() {
+        AppiumService.getInstance().getScreenShotAs(this.step.getId());
+    }
 
-    public void execute(UIElement uiElement) {
+
+    public StepResponse execute(UIElement uiElement) {
+        init();
         InputEvent input = (InputEvent) step.getEvent();
         AppiumService.getInstance().setValue(uiElement,input.getText());
+        return new StepResponse(this.step);
     }
 }

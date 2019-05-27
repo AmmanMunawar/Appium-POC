@@ -1,5 +1,6 @@
 package com.ebricks.script.service;
 
+import com.ebricks.script.Path;
 import com.ebricks.script.config.Configuration;
 import com.ebricks.script.executor.ScriptExecutor;
 import com.ebricks.script.model.UIElement;
@@ -11,12 +12,22 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
 import static java.time.Duration.ofSeconds;
@@ -30,6 +41,7 @@ public class AppiumService {
     private AppiumDriverLocalService service;
     private AppiumServiceBuilder builder;
     private DesiredCapabilities cap;
+
 
     private AppiumService() {
     }
@@ -117,8 +129,18 @@ public class AppiumService {
     }
 
     public void quit(){
-
         driver.quit();
         stopServer();
+    }
+
+    public void getScreenShotAs(int id){
+
+        File srcFile=driver.getScreenshotAs(OutputType.FILE);
+        File targetFile=new File( Path.getinstance().getDirectoryPath()+"/"+ id +".jpg");
+        try {
+            FileUtils.copyFile(srcFile,targetFile);
+        } catch (IOException e) {
+            LOGGER.error("Exception",e);
+        }
     }
 }

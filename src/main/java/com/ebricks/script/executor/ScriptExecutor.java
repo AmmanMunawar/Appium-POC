@@ -1,17 +1,22 @@
 package com.ebricks.script.executor;
 
+import com.ebricks.script.Path;
 import com.ebricks.script.model.ScriptInputData;
 import com.ebricks.script.model.Step;
 import com.ebricks.script.model.UIElement;
 import com.ebricks.script.service.AppiumService;
 import com.ebricks.script.stepexecutor.StepFactory;
+import com.ebricks.script.stepexecutor.response.StepResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -28,6 +33,7 @@ public class ScriptExecutor {
     public void init() {
 
         AppiumService.getInstance().createSession();
+        Path.getinstance().makeDirectory();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             scriptInputData = objectMapper.readValue(new FileReader(System.getProperty("user.dir") + "/resources/elements.json")
@@ -44,7 +50,8 @@ public class ScriptExecutor {
             UIElement uiElement1 = findUIElement(
                     AppiumService.getInstance().getPageSourse(), step.getElement()
             );
-            StepFactory.getInstance().getStepExecutor(step).execute(uiElement1);
+            StepResponse stepResponse = StepFactory.getInstance().getStepExecutor(step).execute(uiElement1);
+            System.out.println(stepResponse.response());
             Thread.sleep(3000);
         }
     }

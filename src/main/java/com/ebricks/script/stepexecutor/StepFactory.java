@@ -27,7 +27,7 @@ public class StepFactory {
             return new HomeExecutor(step);
         }else if (step.getEvent().getType().equals("launch")){
             return new LaunchExecutor(step);
-        }else if (step.getEvent().getType().equals("inputText")){
+        }else if (step.getEvent().getType().equals("input")){
             return new InputExecutor(step);
         }else if (step.getEvent().getType().equals("Swipe")){
             return new SwipeExecutor(step);

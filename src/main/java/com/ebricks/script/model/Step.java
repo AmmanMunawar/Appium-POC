@@ -6,6 +6,15 @@ public class Step {
 
     private UIElement element;
     private Event event;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public UIElement getElement() {
         return element;

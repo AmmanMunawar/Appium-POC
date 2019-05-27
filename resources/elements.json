@@ -2,6 +2,7 @@
 	"steps": [
 
 		{
+			"id": 1,
 			"element": {
 				"text": "NEXT",
 				"type": "android.widget.TextView",
@@ -25,6 +26,7 @@
 			}
 		},
 		{
+			"id": 2,
 			"element": {
 				"text": "NEXT",
 				"type": "android.widget.TextView",
@@ -48,6 +50,7 @@
 			}
 		},
 		{
+			"id": 3,
 			"element": {
 				"text": "NEXT",
 				"type": "android.widget.TextView",
@@ -71,6 +74,7 @@
 			}
 		},
 		{
+			"id": 4,
 			"element": {
 				"text": "Later",
 				"type": "android.widget.TextView",
@@ -93,6 +97,7 @@
 				"type": "tap"
 			}
 		}, {
+			"id": 5,
 			"element": {
 				"text": "Start",
 				"type": "android.widget.TextView",
@@ -115,22 +120,25 @@
 				"type": "tap"
 			}
 		},
-		
+
 		{
+			"id": 6,
 			"element": null,
 			"event": {
 				"type": "lock"
 			}
 		},
 		{
+			"id": 7,
 			"element": null,
 			"event": {
 				"type": "unlock"
 			}
 		},
-		
-		
+
+
 		{
+			"id": 8,
 			"element": {
 				"text": "Already a member? Sign In",
 				"type": "android.widget.TextView",
@@ -154,6 +162,7 @@
 			}
 		},
 		{
+			"id": 9,
 			"element": {
 				"text": "Email Address",
 				"type": "android.widget.EditText",
@@ -173,11 +182,12 @@
 				"resourceId": "com.coupons.ciapp:id/email_edit"
 			},
 			"event": {
-				"type": "inputText",
+				"type": "input",
 				"text": "faiza.shehzadi@ebricks-inc.com"
 			}
 		},
 		{
+			"id": 10,
 			"element": {
 				"text": "Password (8 characters or more)",
 				"type": "android.widget.EditText",
@@ -197,11 +207,12 @@
 				"resourceId": "com.coupons.ciapp:id/password_edit"
 			},
 			"event": {
-				"type": "inputText",
+				"type": "input",
 				"text": "@Faiza13"
 			}
 		},
 		{
+			"id": 11,
 			"element": null,
 			"event": {
 				"type": "Swipe",
@@ -213,6 +224,7 @@
 			}
 		},
 		{
+			"id": 12,
 			"element": {
 				"text": "Sign In",
 				"type": "android.widget.Button",
@@ -236,6 +248,7 @@
 			}
 		},
 		{
+			"id": 13,
 			"element": null,
 			"event": {
 				"type": "Swipe",
@@ -247,6 +260,7 @@
 			}
 		},
 		{
+			"id": 14,
 			"element": null,
 			"event": {
 				"type": "Swipe",
