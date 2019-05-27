@@ -9,6 +9,7 @@ public class LockExecutor extends StepExecutor {
     public LockExecutor(Step step) {
         super(step);
     }
+
     public void init() {
         AppiumService.getInstance().getScreenShotAs(this.step.getId());
     }

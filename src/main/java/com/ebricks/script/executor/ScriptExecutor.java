@@ -10,9 +10,11 @@ import com.ebricks.script.stepexecutor.response.StepResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
@@ -58,8 +60,8 @@ public class ScriptExecutor {
 
         try {
             JSONObject stepResponcesObjects = new JSONObject();
-            stepResponcesObjects.put("stepResponces",stepResponces);
-            FileWriter writeFile = new FileWriter(Path.getinstance().getDirectoryPath()+"/stepResponse.json");
+            stepResponcesObjects.put("stepResponces", stepResponces);
+            FileWriter writeFile = new FileWriter(Path.getinstance().getDirectoryPath() + "/stepResponse.json");
             writeFile.write(stepResponcesObjects.toString());
             writeFile.close();
         } catch (IOException e) {

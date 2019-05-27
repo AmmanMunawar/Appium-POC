@@ -9,24 +9,24 @@ public class Path {
     private String directoryPath = "/resources/results/";
     private static Path instance;
 
-    private Path(){
+    private Path() {
 
     }
-    public static Path getinstance(){
-        if (instance==null){
+
+    public static Path getinstance() {
+        if (instance == null) {
             instance = new Path();
         }
         return instance;
     }
 
-    public void makeDirectory(){
+    public void makeDirectory() {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("HH-mm-ss");
-        this.directoryPath = this.getBasePath()+this.getDirectoryPath()+"Result-"+formatter.format(date);
-        try{
-        new File(this.directoryPath).mkdir();
-        }
-        catch (Exception e){
+        this.directoryPath = this.getBasePath() + this.getDirectoryPath() + "Result-" + formatter.format(date);
+        try {
+            new File(this.directoryPath).mkdir();
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
