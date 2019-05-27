@@ -1,0 +1,6 @@
+**/*.iml
+target/
+resources/
+.idea/
+logs/
+iml/
