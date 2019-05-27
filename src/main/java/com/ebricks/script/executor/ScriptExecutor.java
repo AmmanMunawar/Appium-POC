@@ -10,16 +10,11 @@ import com.ebricks.script.stepexecutor.response.StepResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.StringReader;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -45,15 +40,32 @@ public class ScriptExecutor {
 
     public void process() throws InterruptedException {
 
+        JSONArray stepResponces = new JSONArray();
         for (Step step : this.scriptInputData.getSteps()) {
 
             UIElement uiElement1 = findUIElement(
                     AppiumService.getInstance().getPageSourse(), step.getElement()
             );
             StepResponse stepResponse = StepFactory.getInstance().getStepExecutor(step).execute(uiElement1);
-            System.out.println(stepResponse.response());
+            JSONObject jsonObject = new JSONObject(stepResponse.response());
+            stepResponces.put(jsonObject);
             Thread.sleep(3000);
         }
+        saveResponseinFile(stepResponces);
+    }
+
+    private void saveResponseinFile(JSONArray stepResponces) {
+
+        try {
+            JSONObject stepResponcesObjects = new JSONObject();
+            stepResponcesObjects.put("stepResponces",stepResponces);
+            FileWriter writeFile = new FileWriter(Path.getinstance().getDirectoryPath()+"/stepResponse.json");
+            writeFile.write(stepResponcesObjects.toString());
+            writeFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public boolean compareUIElemetsobjects(UIElement uiElement, UIElement uiElement1) {

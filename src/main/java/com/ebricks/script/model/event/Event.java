@@ -19,9 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = HomeEvent.class, name = "home"),
         @JsonSubTypes.Type(value = LaunchEvent.class, name = "launch"),
         @JsonSubTypes.Type(value = InputEvent.class, name = "input"),
-        @JsonSubTypes.Type(value = SwipeEvent.class, name = "Swipe"),
-
-
+        @JsonSubTypes.Type(value = SwipeEvent.class, name = "swipe"),
 })
 public class Event {
     private String type;

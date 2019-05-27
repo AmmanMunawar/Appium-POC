@@ -18,8 +18,10 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.springframework.beans.factory.parsing.PassThroughSourceExtractor;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.MalformedURLException;
@@ -141,6 +143,16 @@ public class AppiumService {
             FileUtils.copyFile(srcFile,targetFile);
         } catch (IOException e) {
             LOGGER.error("Exception",e);
+        }
+    }
+
+    public void savePageResourceinFile(int id){
+        try {
+            FileWriter fileWriter = new FileWriter(Path.getinstance().getDirectoryPath()+"/"+id+".xml");
+            fileWriter.write(driver.getPageSource());
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

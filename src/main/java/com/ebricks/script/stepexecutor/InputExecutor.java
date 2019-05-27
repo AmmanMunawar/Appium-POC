@@ -17,15 +17,12 @@ public class InputExecutor extends StepExecutor {
     public InputExecutor(Step step) {
         super(step);
     }
-    public void init() {
-        AppiumService.getInstance().getScreenShotAs(this.step.getId());
-    }
-
-
     public StepResponse execute(UIElement uiElement) {
         init();
         InputEvent input = (InputEvent) step.getEvent();
         AppiumService.getInstance().setValue(uiElement,input.getText());
-        return new StepResponse(this.step);
+        this.stepResponse.setUiElement(uiElement);
+        this.stepResponse.getStepStatus().setStatus(true);
+        return this.stepResponse;
     }
 }

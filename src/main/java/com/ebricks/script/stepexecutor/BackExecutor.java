@@ -10,13 +10,12 @@ public class BackExecutor extends StepExecutor {
     public BackExecutor(Step step) {
         super(step);
     }
-    public void init() {
-        AppiumService.getInstance().getScreenShotAs(this.step.getId());
-    }
 
     public StepResponse execute(UIElement uiElement) {
         init();
         AppiumService.getInstance().back();
-        return new StepResponse(this.step);
+        this.stepResponse.setUiElement(uiElement);
+        this.stepResponse.getStepStatus().setStatus(true);
+        return this.stepResponse;
     }
 }

@@ -1,23 +1,37 @@
 package com.ebricks.script.stepexecutor.response;
 
-import com.ebricks.script.model.Step;
 import com.ebricks.script.model.UIElement;
 
 public class StepResponse {
 
-    private Screen screen = new Screen();
-    private StepStatus stepStatus = new StepStatus();
+    private Screen screen;
+    private StepStatus stepStatus;
     private UIElement uiElement;
-    private Step step;
-    public StepResponse(Step step){
-        this.step = step;
-        this.uiElement = step.getElement();
-        this.stepStatus.setStatus(true);
-        this.screen.setScreenshotName(String.valueOf(step.getId()));
+
+    public StepResponse(){
+        this.screen = new Screen();
+        this.stepStatus = new StepStatus();
     }
+
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public StepStatus getStepStatus() {
+        return stepStatus;
+    }
+
+    public UIElement getUiElement() {
+        return uiElement;
+    }
+
+    public void setUiElement(UIElement uiElement) {
+        this.uiElement = uiElement;
+    }
+
     public String response(){
         return "{ "+
-                "action:"+this.step.getEvent().getType()+","+
+                "action:"+this.uiElement.getClass().getSimpleName()+","+
                 "screenshotname:"+this.screen.getScreenshotName()+","+
                 "status:"+this.stepStatus.getStatus()+"}";
     }

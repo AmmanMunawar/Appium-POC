@@ -17,6 +17,8 @@ public class LockExecutor extends StepExecutor {
     public StepResponse execute(UIElement uiElement) {
         init();
         AppiumService.getInstance().lockDevice();
-        return new StepResponse(this.step);
+        this.stepResponse.setUiElement(uiElement);
+        this.stepResponse.getStepStatus().setStatus(true);
+        return this.stepResponse;
     }
 }

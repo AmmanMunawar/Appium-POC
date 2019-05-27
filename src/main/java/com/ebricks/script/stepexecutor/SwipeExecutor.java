@@ -12,16 +12,12 @@ public class SwipeExecutor extends StepExecutor {
         super(step);
     }
 
-
-    public void init() {
-        AppiumService.getInstance().getScreenShotAs(this.step.getId());
-    }
-
-
     public StepResponse execute(UIElement uiElement) {
         init();
         SwipeEvent swipe = (SwipeEvent) step.getEvent();
         AppiumService.getInstance().swipe(swipe.getStartPointX(), swipe.getStartPointY(), swipe.getEndPointX(), swipe.getEndPointY());
-        return new StepResponse(this.step);
+        this.stepResponse.setUiElement(uiElement);
+        this.stepResponse.getStepStatus().setStatus(true);
+        return this.stepResponse;
     }
 }
